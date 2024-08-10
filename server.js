@@ -25,4 +25,28 @@ app.get('/api/notes', (req, res) => {
 
 app.post('/api/notes', (req, res) => {
     const note = req.body;
+
+    note.id = uuidv4();
+
+    fs.readFile('db/db.json', 'utf8', (error, data) => {
+        if (error) {
+            throw error
+        } else {
+            const notes = JSON.parse(data);
+
+            notes.push(note);
+
+            fs.writeFile('db/db.json', JSON.stringify(notes), (error) => {
+                if (error) {
+                    throw error;
+                } else {
+                    res.json(note);
+                }
+            })
+        }
+    })
 })
+
+app.listen(PORT, () => {
+    console.log(`App listening at http://localhost:${PORT}`);
+});
