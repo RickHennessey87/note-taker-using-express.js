@@ -6,9 +6,9 @@ let newNoteBtn;
 let noteList;
 
 if (window.location.pathname === '/notes') {
-  noteForm = document.getElementById('.note-form');
-  noteTitle = document.getElementById('.note-title');
-  noteText = document.getElementById('.note-textarea');
+  noteForm = document.querySelector('.note-form');
+  noteTitle = document.querySelector('.note-title');
+  noteText = document.querySelector('.note-textarea');
   saveNoteBtn = document.querySelector('.save-note');
   newNoteBtn = document.querySelector('.new-note');
   clearBtn = document.querySelector('.clear-btn');
@@ -58,17 +58,17 @@ const renderActiveNote = () => {
   hide(clearBtn);
 
   if (activeNote.id) {
-    show(newNoteBtn);
     noteTitle.setAttribute('readonly', true);
     noteText.setAttribute('readonly', true);
     noteTitle.value = activeNote.title;
     noteText.value = activeNote.text;
+    show(newNoteBtn);
   } else {
-    hide(newNoteBtn);
     noteTitle.removeAttribute('readonly');
     noteText.removeAttribute('readonly');
     noteTitle.value = '';
     noteText.value = '';
+    hide(newNoteBtn);
   }
 };
 
@@ -104,7 +104,8 @@ const handleNoteDelete = (e) => {
 // Sets the activeNote and displays it
 const handleNoteView = (e) => {
   e.preventDefault();
-  activeNote = JSON.parse(e.target.parentElement.getAttribute('data-note'));
+  const note = e.target.parentElement.getAttribute('data-note');
+  activeNote = JSON.parse(note);
   renderActiveNote();
 };
 
@@ -117,6 +118,8 @@ const handleNewNoteView = (e) => {
 
 // Renders the appropriate buttons based on the state of the form
 const handleRenderBtns = () => {
+
+
   show(clearBtn);
   if (!noteTitle.value.trim() && !noteText.value.trim()) {
     hide(clearBtn);
