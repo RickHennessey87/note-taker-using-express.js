@@ -21,4 +21,24 @@ In order to use this application, the user needs Node.js, a command-line applica
         
 To run the applicaton simply visit: 
 
-![screenshot](Website-screenshot.jpg)
+![screenshot](./public/assets/images/screenshot.png)
+
+## Credits
+        
+GitHub: https://github.com/RickHennessey87
+Email: pjhennessey89@gmail.com
+
+## License
+    
+This project is covered by the MIT License license.
+
+[MIT License](https://opensource.org/licenses/MIT)
+        
+## How to Contribute 
+
+No contributions needed.
+        
+## Tests
+        
+No tests to run. 
+
